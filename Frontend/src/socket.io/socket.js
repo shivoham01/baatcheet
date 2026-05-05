@@ -1,8 +1,6 @@
 import { io } from "socket.io-client";
 
-const URL = import.meta.env.PROD
-  ? "https://baatcheet-2xgu.onrender.com"
-  : "http://localhost:3000";
+const URL = "https://baatcheet-2xgu.onrender.com"
 
 export const socket = io(URL, {
   autoConnect: false,
