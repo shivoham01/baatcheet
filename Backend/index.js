@@ -10,7 +10,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
         origin: [
-            "https:/ashutosh.pro"
+            "https://ashutosh.pro/baatcheet"
         ],
         methods: ["GET", "POST"],
     },
