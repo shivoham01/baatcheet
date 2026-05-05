@@ -1,14 +1,19 @@
 const express = require('express')
-const { Server } = require('socket.io');
+const http = require("http");
+const {Server} = require("socket.io");
 
 const app = express()
 const port = 3000;
+const server = http.createServer(app);
 
-// Socket.io Setup
-const io = new Server(5000, {
+// Socket.io and cors Setup
+const io = new Server(server, {
     cors: {
-        origin: "https://localhost:5173/baatcheet",
-        credentials: true,
+        origin: [
+            "http://localhost:5173",
+            "https://shivoham01.github.io"
+        ],
+        methods: ["GET", "POST"],
     },
 });
 
@@ -24,7 +29,6 @@ io.on("connection", (socket) => {
     })
 })
 
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+server.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
