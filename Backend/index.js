@@ -7,7 +7,7 @@ const port = 3000;
 // Socket.io Setup
 const io = new Server(5000, {
     cors: {
-        origin: "http://localhost:5173",
+        origin: "https://ashutosh.pro/baatcheet",
         credentials: true,
     },
 });
