@@ -1,20 +1,34 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useMessages } from "../context api/messageContext";
 
 const Messages = () => {
   const { msg, myID } = useMessages();
+  const bottomRef = useRef(null);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [msg]); // 👈 run on every new message
+
   return (
     <div>
-      <div className="w-full min-h-147 text-[#353333] p-2 relative bg-[#ECE5DD]" id="messages">
+      <div className="w-full min-h-screen text-[#353333] p-2 pt-13 relative bg-[#ECE5DD] overflow-y-auto h-[80vh]" id="messages">
         {msg.map((message, index) => {
           const isMe = message.sender === myID;
-          return <div key={index} className={`flex ${isMe ? "justify-end" : "justify-start"}`}>
-            <p className={`w-auto h-auto iniline-block m-2 p-2 rounded ${isMe ? "bg-[#DCF8C6]" : "bg-[#FFFFFF]"}`}>{message.text}</p>
-          </div>
+          return (
+            <div key={index} className={`flex ${isMe ? "justify-end" : "justify-start"}`}>
+              <p className={`w-auto h-auto inline-block m-1 mb-2 p-2 rounded ${isMe ? "bg-[#DCF8C6]" : "bg-[#FFFFFF]"}`}>
+                {message.text}
+              </p>
+            </div>
+          )
         })}
+
+        {/* 👇 invisible div for auto scroll */}
+        <div ref={bottomRef}></div>
+
       </div>
     </div>
   )
 }
 
-export default Messages
+export default Messages;

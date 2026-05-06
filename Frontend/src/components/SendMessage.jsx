@@ -29,6 +29,7 @@ const SendMessage = () => {
 
     // Send Message Function
     const sendMessage = () => {
+        if (!input.trim()) return; // 👈 stop empty send
         socket.emit("send_message", {
             text: input,
             sender: socket.id
@@ -37,13 +38,13 @@ const SendMessage = () => {
         setInput("");
     }
     return (
-        <div className='bottom-0 relative flex justify-between items-center bg-white'>
+        <div className='bottom-0 fixed sm:w-[80%] w-full flex justify-between items-center bg-white'>
             <input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => {
                 if (e.key === "Enter") {
                     sendMessage();
                 }
             }} type="text" className='outline-none w-full p-2' placeholder='Type a message' />
-            <button onClick={sendMessage} className='m-2 cursor-pointer bg-black text-white rounded-[50%] p-2'><SendHorizontal /></button>
+            <button onClick={sendMessage} disabled={!input} className={`m-2 cursor-pointer ${input === ""? "bg-gray-500": "bg-black"} text-white rounded-[50%] p-2`}><SendHorizontal /></button>
         </div>
     )
 }
