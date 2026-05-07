@@ -13,8 +13,8 @@ const Messages = () => {
 
   return (
     <div className="flex-1 w-full min-h-screen text-[#353333] px-2 pt-17 bg-[#ECE5DD] overflow-y-auto pb-17" id="messages">
-      {/* 👈 add extra space to avoid hiding first message */}
-      <div className='mt-10 inline-block sm:hidden'></div>
+      {/* 👇 add extra space to avoid hiding first message */}
+      <div className='mt-15 inline-block sm:hidden'></div>
       {msg.map((message, index) => {
         const isMe = message.sender === myID;
         return (
