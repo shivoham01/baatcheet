@@ -38,7 +38,7 @@ const SendMessage = () => {
         setInput("");
     }
     return (
-        <div className='bottom-0 left-0 fixed sm:w-[80%] w-full h-15 flex justify-between items-center bg-white'>
+        <div className='bottom-0 fixed sm:w-[80%] w-full h-15 flex justify-between items-center bg-white'>
             <input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => {
                 if (e.key === "Enter") {
                     sendMessage();
