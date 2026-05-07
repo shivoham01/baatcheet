@@ -6,12 +6,14 @@ const Messages = () => {
   const bottomRef = useRef(null);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (msg.length > 3) {
+      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
   }, [msg]); // 👈 run on every new message
 
   return (
     <div>
-      <div className="w-full min-h-screen text-[#353333] p-2 pt-13 relative bg-[#ECE5DD] overflow-y-auto h-[80vh]" id="messages">
+      <div className="flex-1 w-full min-h-screen text-[#353333] p-2 pt-17 bg-[#ECE5DD] overflow-y-auto pb-17" id="messages">
         {msg.map((message, index) => {
           const isMe = message.sender === myID;
           return (

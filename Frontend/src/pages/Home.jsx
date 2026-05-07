@@ -5,7 +5,7 @@ import SendMessage from '../components/SendMessage'
 
 const Home = () => {
   return (
-    <div className='w-full sm:w-[80%] mx-auto'>
+    <div className='w-full h-screen sm:w-[80%] mx-auto flex flex-col'>
       <Navbar />
       <Messages />
       <SendMessage />
